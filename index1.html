@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Health Buddy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2e8b57;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px gray;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #246b45;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .tips {
+      margin-top: 20px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💪 Health Buddy</h1>
+
+  <!-- BMI Calculator -->
+  <div class="container">
+    <h3>BMI Calculator</h3>
+    <input type="number" id="weight" placeholder="Enter weight (kg)">
+    <input type="number" id="height" placeholder="Enter height (m)">
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <div class="result" id="bmiResult"></div>
+  </div>
+
+  <!-- Water Reminder -->
+  <div class="container">
+    <h3>💧 Water Reminder</h3>
+    <button onclick="startReminder()">Start Reminder (Every 5 sec)</button>
+  </div>
+
+  <!-- Health Tips -->
+  <div class="container">
+    <h3>🥗 Health Tips</h3>
+    <div class="tips" id="tips"></div>
+    <button onclick="showTip()">Show Tip</button>
+  </div>
+
+  <script>
+    function calculateBMI() {
+      let weight = document.getElementById("weight").value;
+      let height = document.getElementById("height").value;
+
+      let bmi = weight / (height * height);
+      let result = "Your BMI: " + bmi.toFixed(2);
+
+      if (bmi < 18.5) result += " (Underweight)";
+      else if (bmi < 25) result += " (Normal)";
+      else result += " (Overweight)";
+
+      document.getElementById("bmiResult").innerText = result;
+    }
+
+    function startReminder() {
+      setInterval(() => {
+        alert("💧 Time to drink water!");
+      }, 5000);
+    }
+
+    function showTip() {
+      const tips = [
+        "Drink at least 8 glasses of water daily",
+        "Exercise regularly",
+        "Eat more fruits and vegetables",
+        "Sleep at least 7-8 hours",
+        "Avoid junk food"
+      ];
+
+      let randomTip = tips[Math.floor(Math.random() * tips.length)];
+      document.getElementById("tips").innerText = randomTip;
+    }
+  </script>
+
+</body>
+</html>
